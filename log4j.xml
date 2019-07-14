@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<Configuration status="WARN" monitorInterval="30">
+ 
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %p %m%n</Property>
+    </Properties>
+ 
+    <Appenders>
+ 
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+         
+        <RollingFile name="debugLog" fileName="D:/logs/application-debug.log"
+            filePattern="D:/logs/SpringBootAngularJWT/application-debug-%d{yyyy-MM-dd}-%i.log">
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+         
+        <RollingFile name="infoLog" fileName="D:/logs/application-info.log"
+            filePattern="D:/logs/SpringBootAngularJWT/application-info-%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+        
+        
+        
+         <RollingFile name="annaLog" fileName="D:/logs/application-info-anna.log"
+            filePattern="D:/logs/SpringBootAngularJWT/application-info-anna-%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+         
+        <RollingFile name="errorLog" fileName="D:/logs/application-error.log"
+            filePattern="D:/logs/SpringBootAngularJWT/application-error-%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+         
+        <RollingFile name="springLog" fileName="D:/logs/spring.log"
+            filePattern="D:/logs/SpringBootAngularJWT/spring-%d{yyyy-MM-dd}-%i.log" >
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="1"/>
+        </RollingFile>
+         
+        <RollingFile name="aopLog" fileName="D:/logs/application-aop.log"
+            filePattern="D:/logs/SpringBootAngularJWT/application-aop-%d{yyyy-MM-dd}-%i.log" >
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="1"/>
+        </RollingFile>
+         
+    </Appenders>
+ 
+    <Loggers>
+     
+        <Logger name="com.anna.controller" additivity="false">
+            <AppenderRef ref="aopLog" />
+            <AppenderRef ref="Console" />
+        </Logger>
+         
+        <Logger name="com.anna.controller" additivity="false">
+            <AppenderRef ref="debugLog" />
+            <AppenderRef ref="infoLog"  />
+            <AppenderRef ref="errorLog" />
+            <AppenderRef ref="Console"  />
+        </Logger>
+        
+        
+        <Logger name="annaLogger" additivity="false">
+            <AppenderRef ref="annaLog"  />
+        </Logger>
+        
+        
+         
+        <Logger name="org.springframework" additivity="false">
+            <AppenderRef ref="springLog" />
+            <AppenderRef ref="Console"/>
+        </Logger>
+                 
+        <Root level="all">
+            <AppenderRef ref="Console"/>
+        </Root>
+ 
+    </Loggers>
+ 
+</Configuration>
